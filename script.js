@@ -32,12 +32,12 @@ document.querySelector('.check').addEventListener
         const enteredNum = document.querySelector('.guess').value;
     console.log(document.querySelector('.guess').value);
     if(!enteredNum){
-        document.querySelector('.message').textContent = 'No number';
+        displayMessage('No number');
     }else if(enteredNum < 0 || enteredNum > 20){
-        document.querySelector('.message').textContent = 'Enter the number in range!';
+        displayMessage('Enter the number in range!');
     }else{
        if(enteredNum == random){
-            document.querySelector('.message').textContent = 'Right'
+            displayMessage('right');
             score++;
             if(score > highScore){
                 highScore = score;
@@ -49,39 +49,46 @@ document.querySelector('.check').addEventListener
             gotCorrect=true;
        }else if(enteredNum < random){
             if(score > 1){
-                document.querySelector('.message').textContent = 'Too low';
+                displayMessage('Too low');
                 score--;
                 document.querySelector('.score').textContent = score;
             }else{
-                 document.querySelector('.message').textContent = 'You lost the game';
+                displayMessage('You lost the game');
             }
        }else if(enteredNum > random){
         if(score > 1){
-            document.querySelector('.message').textContent = 'Too high';
+            displayMessage('Too high');
             score--;
             document.querySelector('.score').textContent = score;
         }else{
-             document.querySelector('.message').textContent = 'You lost the game';
+             displayMessage('You lost the game!');
         }
        }
     }
     }
-})
+}) 
 
 document.querySelector('.again').addEventListener('click',function(){
     document.querySelector('.score').textContent = 20;
+    document.querySelector('.number').textContent = '?';
+    document.querySelector('.guess').textContent = '';
     random = ranGenerate();
     document.querySelector('body').style.backgroundColor = '#222';
     if(score > highScore){
         document.querySelector('.highscore').textContent = score;
     }
-    document.querySelector('.message').textContent = 'Start guessing...';
+    displayMessage('Start guessing...');
+
     score=20;
     gotCorrect=false;
     
-    document.querySelector('.number').textContent = '?';
+    
     document.querySelector
 })
+
+const displayMessage = function(message){
+    document.querySelector('.message').textContent = message;
+}
 
 
 // 078 04:00
